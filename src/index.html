@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SPA PoC</title>
+    </head>
+    <body>
+        <div>
+            <h1 hidden="true" class="r">Hello World</h1>
+            <h1 class="r">Bye World</h2>
+        </div>
+        <button onclick="toggle();">Toggle</button>
+    </body>
+    <script>
+        var s = false;
+        var pp = document.getElementsByClassName("r");
+
+        function toggle() {
+            pp[+s].hidden = true;
+            s = !s;
+            pp[+s].hidden = false;
+            history.pushState({}, "");
+        }
+
+        window.addEventListener("popstate", (...a) => {
+            pp[+s].hidden = true;
+            s = !s;
+            pp[+s].hidden = false;
+        });
+    </script>
+</html>
